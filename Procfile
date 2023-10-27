@@ -1,0 +1,1 @@
+web: streamlit run fundamentos_bbdd.py
