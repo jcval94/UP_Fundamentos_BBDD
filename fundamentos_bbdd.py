@@ -5,6 +5,7 @@ import streamlit as st
 import pandas as pd
 from sklearn import datasets
 import numpy as np
+import duckdb
 from sklearn.datasets import fetch_california_housing
 
 def main():
@@ -19,6 +20,12 @@ def main():
     data['MedHouseVal'] = housing.target
 
     target = 'MedHouseVal'
+
+    # Inicializar una conexión DuckDB
+    con = duckdb.connect(database=':memory:')
+    # Cargar el DataFrame en DuckDB
+    con.register('data', data)
+
     # Título de la aplicación
     st.title("Exploración del Conjunto de Datos de Precios de Casas de Boston")
 
@@ -32,16 +39,20 @@ def main():
     # Campo de entrada de texto para la consulta SQL
     consulta_sql = st.text_area("Introduce tu consulta SQL:", value='SELECT * FROM data WHERE MedHouseVal > 1')
 
-    # Botón para ejecutar la consulta
+    # Botón para ejecutar la consulta SQL
     if st.button("Ejecutar Consulta SQL"):
         if consulta_sql:
             try:
-                result = data.query(consulta_sql)
+              # Ejecutar una consulta SQL en el DataFrame
+                # query = "SELECT * FROM data WHERE A > 2"
+                result = con.execute(consulta_sql)
+                # Obtener el resultado como un DataFrame de Pandas
+                result_df = result.fetchdf()
                 st.write("Resultado de la consulta:")
-                st.write(result)
+                st.write(result_df)
             except Exception as e:
                 st.write("Ocurrió un error al ejecutar la consulta:", e)
-
+                    
     # Estadísticas descriptivas
     st.subheader("Estadísticas descriptivas")
     st.write(data.describe())
