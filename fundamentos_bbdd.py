@@ -1,6 +1,3 @@
-
-
-
 import streamlit as st
 import pandas as pd
 from sklearn import datasets
@@ -27,43 +24,56 @@ def main():
     con.register('data', data)
 
     # Título de la aplicación
-    st.title("Exploración del Conjunto de Datos de Precios de Casas de Boston")
+    st.title("Exploración del Conjunto de Datos de Precios de Casas de California")
 
-    # Mostrar una muestra de los datos
-    st.subheader("Muestra del conjunto de datos")
-    st.write(data.head())
+    # Menú del lado izquierdo
+    st.sidebar.title("Menú")
 
-    # Seleccionar una columna para visualizar
-    columna_seleccionada = st.selectbox("Selecciona una columna:", data.columns)
+    # Opción para mostrar la imagen
+    if st.sidebar.checkbox("Mostrar Imagen"):
+        st.image("images/mi_imagen.png")
 
-    # Campo de entrada de texto para la consulta SQL
-    consulta_sql = st.text_area("Introduce tu consulta SQL:", value='SELECT * FROM data WHERE MedHouseVal > 1')
+    # Nueva pestaña para la imagen
+    st.sidebar.title("Pestañas")
+    selected_tab = st.sidebar.radio("Selecciona una pestaña:", ["Exploración de Datos", "Imagen"])
 
-    # Botón para ejecutar la consulta SQL
-    if st.button("Ejecutar Consulta SQL"):
-        if consulta_sql:
-            try:
-              # Ejecutar una consulta SQL en el DataFrame
-                # query = "SELECT * FROM data WHERE A > 2"
-                result = con.execute(consulta_sql)
-                # Obtener el resultado como un DataFrame de Pandas
-                result_df = result.fetchdf()
-                st.write("Resultado de la consulta:")
-                st.write(result_df)
-            except Exception as e:
-                st.write("Ocurrió un error al ejecutar la consulta:", e)
-                    
-    # Estadísticas descriptivas
-    st.subheader("Estadísticas descriptivas")
-    st.write(data.describe())
+    if selected_tab == "Exploración de Datos":
+        # Muestra del conjunto de datos
+        st.subheader("Muestra del conjunto de datos")
+        st.write(data.head())
 
-    # Filtrar y mostrar datos específicos
-    st.subheader("Filtrar datos")
-    filtro = st.slider("Filtrar por precio (target):", float(data[target].min()), float(data[target].max()))
-    filtered_data = data[data[target] < filtro]
-    st.write(filtered_data)
+        # Seleccionar una columna para visualizar
+        columna_seleccionada = st.selectbox("Selecciona una columna:", data.columns)
 
+        # Campo de entrada de texto para la consulta SQL
+        consulta_sql = st.text_area("Introduce tu consulta SQL:", value='SELECT * FROM data WHERE MedHouseVal > 1')
 
-if __name__ == "__main__":
+        # Botón para ejecutar la consulta SQL
+        if st.button("Ejecutar Consulta SQL"):
+            if consulta_sql:
+                try:
+                    # Ejecutar una consulta SQL en el DataFrame
+                    result = con.execute(consulta_sql)
+                    # Obtener el resultado como un DataFrame de Pandas
+                    result_df = result.fetchdf()
+                    st.write("Resultado de la consulta:")
+                    st.write(result_df)
+                except Exception as e:
+                    st.write("Ocurrió un error al ejecutar la consulta:", e)
+
+        # Estadísticas descriptivas
+        st.subheader("Estadísticas descriptivas")
+        st.write(data.describe())
+
+        # Filtrar y mostrar datos específicos
+        st.subheader("Filtrar datos")
+        filtro = st.slider("Filtrar por precio (target):", float(data[target].min()), float(data[target].max()))
+        filtered_data = data[data[target] < filtro]
+        st.write(filtered_data)
+
+    elif selected_tab == "Imagen":
+        # Pestaña para mostrar la imagen
+        st.image("images/mi_imagen.png")
+
+if __name__ == '__main__':
     main()
-
