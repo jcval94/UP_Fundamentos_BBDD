@@ -12,7 +12,7 @@ def main():
 
     # Crear un DataFrame de pandas con los datos
     data = pd.DataFrame(data=housing.data, columns=housing.feature_names)
-    diccionario_datos = pd.read_excel('BBDD_files/Diccionario de datos.xlsx')
+    # diccionario_datos = pd.read_excel('BBDD_files/Diccionario de datos.xlsx')
     # Agregar la columna objetivo (target) al DataFrame
     data['MedHouseVal'] = housing.target
 
@@ -80,12 +80,12 @@ def main():
         st.image("images/bbdd_fundamentos.png")
 
         # Botón para descargar el diccionario de datos
-        st.sidebar.download_button(
-            label="Descargar Diccionario de Datos",
-            data=diccionario_datos.to_excel(),
-            file_name="diccionario_datos.xlsx",
-            key="descargar_diccionario_datos"
-        )
+        # st.sidebar.download_button(
+        #     label="Descargar Diccionario de Datos",
+        #     data=diccionario_datos.to_excel(),
+        #     file_name="diccionario_datos.xlsx",
+        #     key="descargar_diccionario_datos"
+        # )
 
     elif selected_tab == "Objetivos":
         # Pestaña exclusiva para mostrar el contenido HTML
