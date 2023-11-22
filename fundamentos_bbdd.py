@@ -30,16 +30,16 @@ def main():
     # Título de la aplicación
     st.title("Exploración del Conjunto de Datos de Precios de Casas de California")
 
-    # Menú del lado izquierdo
-    st.sidebar.title("Menú")
+    # # Menú del lado izquierdo
+    # st.sidebar.title("Menú")
 
-    # Opción para mostrar la imagen
-    if st.sidebar.checkbox("Mostrar Imagen"):
-        st.image("images/mi_imagen.png")
+    # # Opción para mostrar la imagen
+    # if st.sidebar.checkbox("Mostrar Imagen"):
+    #     st.image("images/mi_imagen.png")
 
     # Nueva pestaña para la imagen
     st.sidebar.title("Pestañas")
-    selected_tab = st.sidebar.radio("Selecciona una pestaña:", ["Objetivos", "Exploración de Datos", "Imagen"])
+    selected_tab = st.sidebar.radio("Selecciona una pestaña:", ["Objetivos", "Exploración de Datos", "BBDD"])
 
     if selected_tab == "Exploración de Datos":
         # Muestra del conjunto de datos
@@ -75,9 +75,9 @@ def main():
         filtered_data = data[data[target] < filtro]
         st.write(filtered_data)
 
-    elif selected_tab == "Imagen":
+    elif selected_tab == "BBDD":
         # Pestaña para mostrar la imagen
-        st.image("images/mi_imagen.png")
+        st.image("images/bbdd_fundamentos.png")
 
     elif selected_tab == "Objetivos":
         # Pestaña exclusiva para mostrar el contenido HTML
