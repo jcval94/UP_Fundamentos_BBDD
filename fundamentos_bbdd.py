@@ -76,10 +76,13 @@ def main():
         st.write(filtered_data)
 
     elif selected_tab == "BBDD":
-        if st.button("Descargar Diccionario de Datos"):
-            st.markdown(
-                f"[Descargar Diccionario de Datos]({url_diccionario_datos} 'Descargar Diccionario de Datos')"
-            )
+        # Botón de descarga directa del diccionario de datos en el cuerpo principal
+        st.subheader("Descargar Diccionario de Datos")
+        st.markdown(
+            f'<a href="{url_diccionario_datos}" download="Diccionario_de_datos.xlsx">📥 Descargar Diccionario de Datos</a>',
+            unsafe_allow_html=True
+        )
+
         # Pestaña para mostrar la imagen
         st.image("images/bbdd_fundamentos.png")
 
