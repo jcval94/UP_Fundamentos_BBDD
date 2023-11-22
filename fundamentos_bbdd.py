@@ -77,9 +77,8 @@ def main():
 
     elif selected_tab == "BBDD":
         # Botón de descarga directa del diccionario de datos en el cuerpo principal
-        st.subheader("Descargar Diccionario de Datos")
         st.markdown(
-            f'<a href="{url_diccionario_datos}" download="Diccionario_de_datos.xlsx">📥 Descargar Diccionario de Datos</a>',
+            f'<h3 href="{url_diccionario_datos}" download="Diccionario_de_datos.xlsx">📥 Descargar Diccionario de Datos</h3>',
             unsafe_allow_html=True
         )
 
