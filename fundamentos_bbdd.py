@@ -23,6 +23,10 @@ def main():
     # Cargar el DataFrame en DuckDB
     con.register('data', data)
 
+    # Cargar el HTML desde el archivo
+    with open('BBDD_files/Presentacion.html', 'r', encoding='utf-8') as f:
+        html_content = f.read()
+
     # Título de la aplicación
     st.title("Exploración del Conjunto de Datos de Precios de Casas de California")
 
@@ -35,7 +39,7 @@ def main():
 
     # Nueva pestaña para la imagen
     st.sidebar.title("Pestañas")
-    selected_tab = st.sidebar.radio("Selecciona una pestaña:", ["Exploración de Datos", "Imagen"])
+    selected_tab = st.sidebar.radio("Selecciona una pestaña:", ["Objetivos", "Exploración de Datos", "Imagen"])
 
     if selected_tab == "Exploración de Datos":
         # Muestra del conjunto de datos
@@ -74,6 +78,10 @@ def main():
     elif selected_tab == "Imagen":
         # Pestaña para mostrar la imagen
         st.image("images/mi_imagen.png")
+
+    elif selected_tab == "Objetivos":
+        # Pestaña exclusiva para mostrar el contenido HTML
+        st.markdown(html_content, unsafe_allow_html=True)
 
 if __name__ == '__main__':
     main()
