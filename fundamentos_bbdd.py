@@ -76,12 +76,29 @@ def main():
         st.write(filtered_data)
 
     elif selected_tab == "BBDD":
+        # Añadir el botón para descargar el diccionario de datos
+        st.sidebar.markdown("""
+        [Descargar Diccionario de Datos](data:application/octet-stream;base64,{} "Descargar Diccionario de Datos")
+        """.format(df_to_excel_download_link()), unsafe_allow_html=True)
+
         # Pestaña para mostrar la imagen
         st.image("images/bbdd_fundamentos.png")
 
     elif selected_tab == "Objetivos":
         # Pestaña exclusiva para mostrar el contenido HTML
         st.markdown(html_content, unsafe_allow_html=True)
+
+# Función para convertir un DataFrame de Pandas a un enlace de descarga en formato Excel
+def df_to_excel_download_link(filename="diccionario_datos.xlsx", sheet_name="Sheet1"):
+    df = pd.read_excel('BBDD_files/Diccionario de datos.xlsx')
+    output = BytesIO()
+    writer = pd.ExcelWriter(output, engine='xlsxwriter')
+    df.to_excel(writer, sheet_name=sheet_name, index=False)
+    writer.save()
+    excel_data = output.getvalue()
+    b64 = base64.b64encode(excel_data).decode()
+    return f'<a href="data:application/octet-stream;base64,{b64}" download="{filename}">Descargar archivo</a>'
+
 
 if __name__ == '__main__':
     main()
