@@ -12,7 +12,7 @@ def main():
 
     # Crear un DataFrame de pandas con los datos
     data = pd.DataFrame(data=housing.data, columns=housing.feature_names)
-
+    dicc_dat = pd.read_excel('BBDD_files/Diccionario de datos.xlsx')
     # Agregar la columna objetivo (target) al DataFrame
     data['MedHouseVal'] = housing.target
 
@@ -79,7 +79,7 @@ def main():
         # Añadir el botón para descargar el diccionario de datos
         st.sidebar.markdown("""
         [Descargar Diccionario de Datos](data:application/octet-stream;base64,{} "Descargar Diccionario de Datos")
-        """.format(df_to_excel_download_link()), unsafe_allow_html=True)
+        """.format(df_to_excel_download_link(dicc_dat)), unsafe_allow_html=True)
 
         # Pestaña para mostrar la imagen
         st.image("images/bbdd_fundamentos.png")
@@ -89,8 +89,7 @@ def main():
         st.markdown(html_content, unsafe_allow_html=True)
 
 # Función para convertir un DataFrame de Pandas a un enlace de descarga en formato Excel
-def df_to_excel_download_link(filename="diccionario_datos.xlsx", sheet_name="Sheet1"):
-    df = pd.read_excel('BBDD_files/Diccionario de datos.xlsx')
+def df_to_excel_download_link(df, filename="diccionario_datos.xlsx", sheet_name="Sheet1"):
     output = BytesIO()
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
     df.to_excel(writer, sheet_name=sheet_name, index=False)
