@@ -17,7 +17,7 @@ def main():
     data['MedHouseVal'] = housing.target
 
     target = 'MedHouseVal'
-
+    url_diccionario_datos = 'https://github.com/jcval94/UP_Fundamentos_BBDD/raw/main/BBDD_files/Diccionario%20de%20datos.xlsx'
     # Inicializar una conexión DuckDB
     con = duckdb.connect(database=':memory:')
     # Cargar el DataFrame en DuckDB
@@ -76,6 +76,10 @@ def main():
         st.write(filtered_data)
 
     elif selected_tab == "BBDD":
+
+        st.sidebar.markdown(
+            f"[Descargar Diccionario de Datos]({url_diccionario_datos} 'Descargar Diccionario de Datos')"
+        )
         # Pestaña para mostrar la imagen
         st.image("images/bbdd_fundamentos.png")
 
