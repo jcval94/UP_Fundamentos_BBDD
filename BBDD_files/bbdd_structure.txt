@@ -1,0 +1,72 @@
+// Diagrama de la BBDD
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table "Ocurrencia Delictiva" {
+  "Momento delito" datetime
+  "ID Delito" varchar(10) [primary key]
+  "ID Tipo Delito" varchar(10)
+  "ID Fiscalía" varchar(10)
+  "ID Municipio" int
+  "latitud" decimal
+  "longitud" decimal
+  "Fecha Registro" datetime
+}
+
+Table "Municipio" {
+  "ID Municipio" int [primary key]
+  "alcaldia_hecho" varchar(255)
+  "estado_hecho" varchar(255)
+}
+
+Table "Fiscalia" {
+  "Id Fiscalía" varchar(10) [primary key]
+  "fiscalia" varchar(255)
+  "agencia" varchar(255)
+  "unidad_investigacion" varchar(255)
+}
+
+Table "Delitos" {
+  "ID Tipo Delito" varchar(10) [primary key]
+  "Delito" varchar(255)
+  "Categoria" varchar(255)
+  "Competencia" varchar(255)
+}
+
+Table "Comercios" {
+  "id" int [primary key]
+  "clee" varchar(50)
+  "nom_estab" varchar(255)
+  "raz_social" varchar(255)
+  "codigo_act" int
+  "telefono" varchar(20)
+  "correoelec" varchar(255)
+  "latitud" decimal
+  "longitud" decimal
+  "fecha_alta" date
+  "ID Centro comercial" varchar(10)
+  "ID Municipio" int
+}
+
+Table "Actividades Económicas" {
+  "codigo_act" int [primary key]
+  "nombre_act" varchar(255)
+}
+
+Table "Centros comerciales" {
+  "ID Centro comercial" varchar(10) [primary key]
+  "tipoCenCom" varchar(255)
+  "nom_CenCom" varchar(255)
+  "cod_postal" int
+}
+
+Ref: "Ocurrencia Delictiva"."ID Tipo Delito" > "Delitos"."ID Tipo Delito"
+Ref: "Ocurrencia Delictiva"."ID Municipio" > "Municipio"."ID Municipio"
+Ref: "Ocurrencia Delictiva"."ID Fiscalía" > "Fiscalia"."Id Fiscalía"
+Ref: "Comercios"."ID Centro comercial" > "Centros comerciales"."ID Centro comercial"
+Ref: "Comercios"."ID Municipio" > "Municipio"."ID Municipio"
+Ref: "Comercios"."codigo_act" > "Actividades Económicas"."codigo_act"
+
+
+
+
