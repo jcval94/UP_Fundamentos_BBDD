@@ -76,10 +76,10 @@ def main():
         st.write(filtered_data)
 
     elif selected_tab == "BBDD":
-
-        st.sidebar.markdown(
-            f"[Descargar Diccionario de Datos]({url_diccionario_datos} 'Descargar Diccionario de Datos')"
-        )
+        if st.button("Descargar Diccionario de Datos"):
+            st.markdown(
+                f"[Descargar Diccionario de Datos]({url_diccionario_datos} 'Descargar Diccionario de Datos')"
+            )
         # Pestaña para mostrar la imagen
         st.image("images/bbdd_fundamentos.png")
 
