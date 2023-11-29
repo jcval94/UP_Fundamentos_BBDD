@@ -83,7 +83,11 @@ def main():
         )
 
         # Pestaña para mostrar la imagen
-        st.sidebar.title("Diagrama ER & Esquema")
+        st.sidebar.title("")
+        st.markdown(
+            f'<h2> Diagrama ER & Esquema </h2>'
+        )
+        
         st.image("images/diagrama_er.png")
 
         st.image("images/bbdd_fundamentos.png")
