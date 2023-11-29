@@ -16,11 +16,11 @@ def main():
     archivos_csv = [
         'files/Actividades_Economicas.csv',
         'files/Centros_comerciales.csv',
-        'files/Comercios.csv',
         'files/Delitos.csv',
         'files/Fiscalia.csv',
         'files/Municipio.csv',
         'files/Ocurrencia_Delictiva.csv',
+        'files/Comercios.csv',
     ]
     
     for archivo in archivos_csv:
@@ -62,8 +62,8 @@ def main():
 
     if selected_tab == "Exploración de Datos":
         # Muestra del conjunto de datos
-        st.subheader("Muestra del conjunto de datos")
-        st.write(data.head())
+        st.subheader("Muestra del conjunto de datos de comercios en la CDMX")
+        st.write(df.head())
 
         # Seleccionar una columna para visualizar
         columna_seleccionada = st.selectbox("Selecciona una columna:", data.columns)
