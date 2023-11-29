@@ -83,6 +83,9 @@ def main():
         )
 
         # Pestaña para mostrar la imagen
+        st.sidebar.title("Diagrama ER & Esquema")
+        st.image("images/diagrama_er.png")
+
         st.image("images/bbdd_fundamentos.png")
 
         # Botón para descargar el diccionario de datos
