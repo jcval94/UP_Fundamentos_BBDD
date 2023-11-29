@@ -35,9 +35,7 @@ def main():
     data = pd.DataFrame(data=housing.data, columns=housing.feature_names)
     # diccionario_datos = pd.read_excel('BBDD_files/Diccionario de datos.xlsx')
     # Agregar la columna objetivo (target) al DataFrame
-    data['MedHouseVal'] = housing.target
 
-    target = 'MedHouseVal'
     url_diccionario_datos = 'https://github.com/jcval94/UP_Fundamentos_BBDD/raw/main/BBDD_files/Diccionario%20de%20datos.xlsx'
     # Cargar el DataFrame en DuckDB
     con.register('data', data)
@@ -47,7 +45,7 @@ def main():
         html_content = f.read()
 
     # Título de la aplicación
-    st.title("Proyeto final Fundamentos de BBDD")
+    st.title("Proyeto final - Fundamentos de BBDD")
 
     # # Menú del lado izquierdo
     # st.sidebar.title("Menú")
