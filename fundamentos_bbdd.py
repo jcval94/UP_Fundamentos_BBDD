@@ -65,9 +65,6 @@ def main():
         st.subheader("Muestra del conjunto de datos de comercios en la CDMX")
         st.write(df.head())
 
-        # Seleccionar una columna para visualizar
-        columna_seleccionada = st.selectbox("Selecciona una columna:", data.columns)
-
         # Campo de entrada de texto para la consulta SQL
         consulta_sql = st.text_area("Introduce tu consulta SQL:", value='SELECT * FROM data WHERE MedHouseVal > 1')
 
