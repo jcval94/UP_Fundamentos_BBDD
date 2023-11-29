@@ -9,7 +9,8 @@ def main():
 
     # Cargar el conjunto de datos de viviendas de California
     housing = fetch_california_housing()
-
+    # Crear un DataFrame de pandas con los datos
+    delitos = pd.read_csv('files/Delitos.csv')
     # Crear un DataFrame de pandas con los datos
     data = pd.DataFrame(data=housing.data, columns=housing.feature_names)
     # diccionario_datos = pd.read_excel('BBDD_files/Diccionario de datos.xlsx')
