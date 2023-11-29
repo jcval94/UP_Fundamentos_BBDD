@@ -9,6 +9,8 @@ def main():
 
     # Cargar el conjunto de datos de viviendas de California
     housing = fetch_california_housing()
+    # Inicializar una conexión DuckDB
+    con = duckdb.connect(database=':memory:')
     # Crear un DataFrame de pandas con los datos
     # delitos = pd.read_csv('files/Delitos.csv')
     archivos_csv = [
@@ -37,8 +39,6 @@ def main():
 
     target = 'MedHouseVal'
     url_diccionario_datos = 'https://github.com/jcval94/UP_Fundamentos_BBDD/raw/main/BBDD_files/Diccionario%20de%20datos.xlsx'
-    # Inicializar una conexión DuckDB
-    con = duckdb.connect(database=':memory:')
     # Cargar el DataFrame en DuckDB
     con.register('data', data)
 
