@@ -10,7 +10,25 @@ def main():
     # Cargar el conjunto de datos de viviendas de California
     housing = fetch_california_housing()
     # Crear un DataFrame de pandas con los datos
-    delitos = pd.read_csv('files/Delitos.csv')
+    # delitos = pd.read_csv('files/Delitos.csv')
+    archivos_csv = [
+        'files/Actividades_Economicas.csv',
+        'files/Centros_comerciales.csv',
+        'files/Comercios.csv',
+        'files/Delitos.csv',
+        'files/Fiscalia.csv',
+        'files/Municipio.csv',
+        'files/Ocurrencia_Delictiva.csv',
+    ]
+    
+    for archivo in archivos_csv:
+        # Extraer el nombre de la tabla del nombre del archivo (sin la extensión .csv)
+        nombre_tabla = archivo.split('/')[-1].split('.')[0]
+    
+        # Leer el archivo CSV y registrarlo en la base de datos
+        df = pd.read_csv(archivo)
+        con.register(nombre_tabla, df)
+    
     # Crear un DataFrame de pandas con los datos
     data = pd.DataFrame(data=housing.data, columns=housing.feature_names)
     # diccionario_datos = pd.read_excel('BBDD_files/Diccionario de datos.xlsx')
