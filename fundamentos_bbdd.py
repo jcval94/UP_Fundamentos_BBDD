@@ -28,7 +28,7 @@ def main():
         html_content = f.read()
 
     # Título de la aplicación
-    st.title("Exploración del Conjunto de Datos de Precios de Casas de California")
+    st.title("Proyeto final Fundamentos de BBDD")
 
     # # Menú del lado izquierdo
     # st.sidebar.title("Menú")
