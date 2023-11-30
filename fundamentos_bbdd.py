@@ -79,15 +79,15 @@ def main():
                 except Exception as e:
                     st.write("Ocurrió un error al ejecutar la consulta:", e)
 
-        # Estadísticas descriptivas
-        st.subheader("Estadísticas descriptivas")
-        st.write(data.describe())
+                # Estadísticas descriptivas
+                st.subheader("Estadísticas descriptivas")
+                st.write(result_df.describe())
 
-        # Filtrar y mostrar datos específicos
-        st.subheader("Filtrar datos")
-        filtro = st.slider("Filtrar por precio (target):", float(data[target].min()), float(data[target].max()))
-        filtered_data = data[data[target] < filtro]
-        st.write(filtered_data)
+        # # Filtrar y mostrar datos específicos
+        # st.subheader("Filtrar datos")
+        # filtro = st.slider("Filtrar por precio (target):", float(data[target].min()), float(data[target].max()))
+        # filtered_data = data[data[target] < filtro]
+        # st.write(filtered_data)
 
     elif selected_tab == "BBDD":
         # Botón de descarga directa del diccionario de datos en el cuerpo principal
