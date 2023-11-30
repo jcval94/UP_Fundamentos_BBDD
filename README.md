@@ -5,3 +5,4 @@ https://upfundamentosbbdd-jcdvl.streamlit.app/
 
 Normalizarción de datos ... (3 formas normales)
 
+- José Carlos Del Valle López
