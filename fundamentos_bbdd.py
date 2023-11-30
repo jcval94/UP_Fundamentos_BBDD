@@ -64,7 +64,13 @@ def main():
         st.write(df.head())
 
         # Campo de entrada de texto para la consulta SQL
-        consulta_sql = st.text_area("Introduce tu consulta SQL:", value='SELECT * FROM data WHERE MedHouseVal > 1')
+        consulta_sql = st.text_area("Introduce tu consulta SQL:", value='''
+        SELECT SUBSTR("Momento delito", 6, 2) AS "Mes", COUNT(*) AS "Total Delitos"
+            FROM "Ocurrencia_Delictiva"
+            GROUP BY "Mes"
+            ORDER BY "Mes";
+        '''
+                                   )
 
         # Botón para ejecutar la consulta SQL
         if st.button("Ejecutar Consulta SQL"):
