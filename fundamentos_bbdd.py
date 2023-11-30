@@ -26,7 +26,7 @@ def main():
     for archivo in archivos_csv:
         # Extraer el nombre de la tabla del nombre del archivo (sin la extensión .csv)
         nombre_tabla = archivo.split('/')[-1].split('.')[0]
-    
+        print(nombre_tabla)
         # Leer el archivo CSV y registrarlo en la base de datos
         df = pd.read_csv(archivo)
         con.register(nombre_tabla, df)
